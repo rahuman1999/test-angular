@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
+import {
+    MatSnackBar,
+    MatSnackBarHorizontalPosition,
+    MatSnackBarVerticalPosition,
+  } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HelperService {
-  constructor() {}
+    horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+    verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  constructor(
+    private _snackBar: MatSnackBar,
+  ) {}
 
   getToken() {
     return localStorage.getItem('token') || '';
   }
 
   loggedIn() {
-    console.log('pass');
     return localStorage.getItem('token') != null;
   }
 
@@ -21,11 +29,16 @@ export class HelperService {
     if (token) {
       let extract: any = token.split('.')[1];
       let decode = atob(extract);
-      console.log(decode);
       let tokendata = JSON.parse(decode);
-      console.log(tokendata);
       return tokendata;
     }
+  }
+
+  commonToast(){
+  return  this._snackBar.open('Please fill all the field', 'Close', {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      });
   }
 
  

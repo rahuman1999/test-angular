@@ -6,25 +6,35 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { HelperService } from 'src/app/service/Helper/helper';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css'],
 })
-export class UserProfileComponent {
+export class UserSignupComponent {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  submitted:boolean=false
   constructor(
     private postService: PostService,
     private SharedService: SharedComponent,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private route: Router,
+    private helperService: HelperService
   ) {}
 
   userProfileForm = this.SharedService.userProfileForm;
   
   onSubmit() {
     try {
+      this.submitted=true
+      if(this.userProfileForm.invalid){
+        this.helperService.commonToast()
+        return
+      }
       console.log(this.userProfileForm.value);
       const data: any = this.userProfileForm.value;
       const formdata = new FormData();
@@ -33,15 +43,13 @@ export class UserProfileComponent {
       formdata.append('password', data.password);
       formdata.append('image', data.image);
       console.log(formdata);
-      this.postService.addUserProfile(formdata).subscribe((res: any) => {
+      this.postService.signup(formdata).subscribe((res: any) => {
         if (res.code == 200 && res.status == 'success') {
           this._snackBar.open(res.message, 'Close', {
             horizontalPosition: this.horizontalPosition,
             verticalPosition: this.verticalPosition,
           });
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
+          this.route.navigate(['']);
         }
       });
     } catch (error: any) {

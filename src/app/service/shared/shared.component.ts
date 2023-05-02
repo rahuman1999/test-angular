@@ -11,6 +11,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SharedComponent {
 
+  signinForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+  });
+
   userProfileForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -55,7 +63,7 @@ export class SharedComponent {
       return 'You must enter a password';
     }
     if (this.userProfileForm.get('password')?.hasError('minlength')) {
-      return 'Password should have minimum 6 characters';
+      return 'Password minimum 4 characters';
     }
   }
 }

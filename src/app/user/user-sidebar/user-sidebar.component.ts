@@ -3,6 +3,9 @@ import {
   faCartPlus,
   faDisplay,
   faMoneyCheckDollar,
+  faCommentAlt,
+  faCode,
+  faListUl
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,5 +16,7 @@ import {
 export class UserSidebarComponent {
   faProduct = faDisplay;
   faCart = faCartPlus;
-  faOrder = faMoneyCheckDollar;
+  faCode = faCode;
+  faChat=faCommentAlt;
+  faList=faListUl
 }

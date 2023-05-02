@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { AvatarModule } from "ngx-avatar";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -15,6 +16,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [],
@@ -34,7 +37,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
       MatButtonModule,
       MatToolbarModule,
       MatSnackBarModule,
-      NgxMatFileInputModule
+      MatTooltipModule,
+      MatSelectModule,
+      NgxMatFileInputModule,
+      AvatarModule
     ],
     exports: [
       MatPaginatorModule,
@@ -52,7 +58,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
       MatButtonModule,
       MatToolbarModule,
       MatSnackBarModule,
-      NgxMatFileInputModule
+      MatTooltipModule,
+      MatSelectModule,
+      NgxMatFileInputModule,
+      AvatarModule
     ],
   })
   export class MaterialComponentModule {}
